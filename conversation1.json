@@ -1,0 +1,101 @@
+{
+  "questions": [
+    {
+      "key":"name",
+      "prompt":"My name is",
+      "suffix":null,
+      "placeholder":"tell us your name",
+      "answers":null
+    },
+    {
+      "key":"enquiry_type",
+      "prompt":"and I have",
+      "answers":[
+        "a project",
+        "a question"
+      ],
+      "suffix":"."
+    },
+    {
+      "key":"project_type",
+      "prompt":"to",
+      "answers":[
+        "create",
+        "improve"
+      ]
+    },
+    {
+      "key":"project_desc",
+      "entity":"description",
+      "prompt":"a",
+      "suffix":".",
+      "placeholder":"Tell us more about it..."
+    },
+    {
+      "key":"time_horizon",
+      "prompt":"I am planning to start",
+      "answers":[
+        "right now",
+        "within 3 months",
+        "within a year",
+        "in a year or more"
+      ]
+    },
+    {
+      "key":"help_needed",
+      "prompt":"and I need help with",
+      "suffix":".",
+      "answers":[
+        "service design",
+        "improving our development process",
+        "finding people",
+        "something else"
+      ]
+    },
+    {
+      "key":"question_desc",
+      "entity":"description",
+      "prompt":"I want to know",
+      "suffix":".",
+      "placeholder":"What do you want to know..."
+    },
+    {
+      "key":"email",
+      "prompt":"You can contact me by email at",
+      "suffix":".",
+      "placeholder":"What is your email?"
+    }
+  ],
+  "conversation": [
+    {
+      "key":"name"
+    },
+    {
+      "key":"enquiry_type",
+      "next_by_answer":{
+        "a project":[
+          {
+            "key":"project_type"
+          },
+          {
+            "key":"project_desc"
+          },
+          {
+            "key":"time_horizon"
+          },
+          {
+            "key":"help_needed"
+          }
+        ],
+        "a question":[
+          {
+            "key":"question_desc"
+          }
+        ]
+      }
+    },
+    {
+      "key":"email"
+    }
+  ]
+}

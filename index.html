@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css"></link>
+    </head>
+    <body>
+        <div id="app">
+          <div class="answers">
+            <question-answer
+                v-for="(item, index) in conversationTree.questions"
+                :question="item"
+                :questions="conversationTree.questions"
+                :nextanswer="conversationTree.conversation[1].next_by_answer"
+                :key="item.id"
+                :current.sync="current"
+                :qindex="index"
+                :answer="answer">
+            </question-answer>
+          </div>
+          <div class="questions" v-for="(question, index) in conversationTree.questions" v-if="(current == index+1)">
+
+            <template v-if="(conversationTree.questions[current-1].answers == null) && (current < conversationTree.questions.length+1)">
+                <input autofocus type="text" v-model="answer[conversationTree.questions[current-1].key]" @keyup.enter="next_question($event)" :placeholder="conversationTree.questions[current-1].placeholder">
+                <div class="press-enter">
+                    Press
+                    <span class="enter-box">enter</span>
+                    to save
+                </div>
+            </template>
+            <div class="option" v-for="option in conversationTree.questions[current-1].answers" @click="answer_option(option, $event)">{{ option }}</div>
+          </div>
+
+        </div>
+        
+        <script src="index.js"></script>
+    </body>
+</html>
