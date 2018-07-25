@@ -14,11 +14,6 @@ Vue.component('question-answer', {
         },
         goto_question: function(qindex) {
             this.$emit('update:current', qindex+1);
-
-            var input = document.querySelector('#app .questions input');
-            console.log(input);
-            if (input)
-                input.focus();
         },
         match_enquiry: function() {
             if ((this.qindex > 1) && (this.qindex < this.questions.length-1)) {
@@ -56,13 +51,6 @@ var app = new Vue({
         next_question: function(event) {
             if ((event.type == 'click') || (event.target.value.length && (event.type == 'keyup')))
                 this.current++;
-            var input = document.querySelector('#app .questions input');
-            console.log(input);
-            if (input)
-                input.focus();
-        },
-        get_json: function(response) {
-            console.log(response);
         }
     },
     data: {
